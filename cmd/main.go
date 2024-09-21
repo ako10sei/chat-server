@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	desc "github.com/chat-server/pkg/chat_server_v1"
+	desc "github.com/ako10sei/chat-server/pkg/chat_server_v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -19,18 +19,18 @@ type chatServer struct {
 }
 
 // Create - создание нового чата
-func (s *chatServer) Create(ctx context.Context, req *desc.CreateRequest) (*desc.CreateResponse, error) {
+func (s *chatServer) Create(ctx context.Context, req *desc.CreateChatRequest) (*desc.CreateChatResponse, error) {
 	// Просто выводим на экран usernames
 	log.Printf("Creating chat with users: %v", req.GetUsernames())
 
 	// В качестве ответа возвращаем фиктивный ID
-	return &desc.CreateResponse{
+	return &desc.CreateChatResponse{
 		Id: 1, // Фиксированный ID для примера
 	}, nil
 }
 
 // Delete - удаление чата
-func (s *chatServer) Delete(ctx context.Context, req *desc.DeleteRequest) (*emptypb.Empty, error) {
+func (s *chatServer) Delete(ctx context.Context, req *desc.DeleteChatRequest) (*emptypb.Empty, error) {
 	// Просто выводим на экран ID чата
 	log.Printf("Deleting chat with ID: %d", req.GetId())
 
